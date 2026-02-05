@@ -335,7 +335,7 @@
       "accountId": "coyne-home"
     },
     "sessionId": "6edf9253-0c98-4fcf-a474-104828c7f700",
-    "updatedAt": 1770324434265,
+    "updatedAt": 1770334950974,
     "deliveryContext": {
       "channel": "telegram",
       "to": "telegram:6938231129",
@@ -401,14 +401,14 @@
       "version": 0
     },
     "inputTokens": 8,
-    "outputTokens": 559,
-    "totalTokens": 69687,
+    "outputTokens": 245,
+    "totalTokens": 167434,
     "modelProvider": "anthropic",
     "model": "claude-opus-4-5",
     "contextTokens": 200000,
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1770322639693,
+      "generatedAt": 1770334447643,
       "sessionId": "6edf9253-0c98-4fcf-a474-104828c7f700",
       "sessionKey": "agent:groundskeeper:main",
       "provider": "anthropic",
@@ -648,8 +648,8 @@
         ]
       }
     },
-    "compactionCount": 2,
-    "memoryFlushAt": 1770318640714,
-    "memoryFlushCompactionCount": 2
+    "compactionCount": 4,
+    "memoryFlushAt": 1770334447609,
+    "memoryFlushCompactionCount": 4
   }
 }

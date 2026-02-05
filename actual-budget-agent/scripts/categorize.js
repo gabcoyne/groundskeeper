@@ -29,8 +29,8 @@ const CATEGORY_RULES = {
 
   // ===== TRANSPORTATION =====
   'Gas & Fuel': [
-    /\bbp\b/i, /shell/i, /exxon/i, /mobil/i, /chevron/i, /gas station/i,
-    /speedway/i, /marathon/i, /citgo/i
+    /\bbp\s*(gas|#)/i, /shell\s*(oil|service|\d)/i, /exxon/i, /mobil/i, /chevron/i, /gas station/i,
+    /speedway/i, /marathon/i, /citgo/i, /costco gas/i
   ],
   'Auto & Transport': [
     /uber trip/i, /uber\b/i, /lyft/i, /car wash/i, /lawrence express/i,
@@ -107,11 +107,14 @@ const CATEGORY_RULES = {
 
   // ===== TRANSFERS & PAYMENTS =====
   'Transfers': [
-    /zelle/i, /venmo/i, /paypal/i, /transfer/i, /online transfer/i,
-    /ally bank/i, /betterment/i, /schwab/i, /crosscountry/i
+    /zelle/i, /venmo/i, /paypal(?! inst)/i, /transfer/i, /online transfer/i,
+    /internet transfer/i, /requested transfer/i,
+    /ally bank(?! cc)/i, /betterment/i, /schwab/i, /crosscountry/i,
+    /sofi bank/i, /jpmorgan chase ext/i, /lbarraza sofi/i
   ],
   'Credit Card Payment': [
-    /chase credit card/i, /apple credit card/i, /amex/i, /payment\b/i
+    /chase credit card/i, /apple credit card/i, /amex/i, /ally cc/i,
+    /ally.*paymt/i, /applecard/i, /capital one.*payment/i
   ],
 
   // ===== FEES & TAXES =====
