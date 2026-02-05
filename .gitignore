@@ -34,3 +34,9 @@ Thumbs.db
 *.key
 *.pem
 .env.local
+-e 
+# Tax deduction databases (regenerated from Actual)
+*.sqlite
+*.duckdb
+deductions-*.json
+deductions-*.csv
