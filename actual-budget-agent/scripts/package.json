@@ -1,0 +1,12 @@
+{
+  "name": "actual-budget-scripts",
+  "version": "1.0.0",
+  "description": "Scripts for Actual Budget integration",
+  "scripts": {
+    "fetch": "node fetch_transactions.js",
+    "categorize": "node categorize_transactions.js"
+  },
+  "dependencies": {
+    "@actual-app/api": "^26.2.0"
+  }
+}
