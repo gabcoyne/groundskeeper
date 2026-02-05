@@ -335,7 +335,7 @@
       "accountId": "coyne-home"
     },
     "sessionId": "6edf9253-0c98-4fcf-a474-104828c7f700",
-    "updatedAt": 1770334950974,
+    "updatedAt": 1770335778299,
     "deliveryContext": {
       "channel": "telegram",
       "to": "telegram:6938231129",
@@ -401,8 +401,8 @@
       "version": 0
     },
     "inputTokens": 8,
-    "outputTokens": 245,
-    "totalTokens": 167434,
+    "outputTokens": 519,
+    "totalTokens": 54261,
     "modelProvider": "anthropic",
     "model": "claude-opus-4-5",
     "contextTokens": 200000,
