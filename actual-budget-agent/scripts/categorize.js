@@ -6,7 +6,7 @@ const CATEGORY_RULES = {
   'Income': [
     /payroll/i, /prefect technolo/i, /direct deposit/i, /salary/i,
     /federal reserve wire/i, /dividend/i, /interest payment/i,
-    /deposit/i, /distribution/i
+    /deposit/i, /distribution/i, /interest paid/i
   ],
 
   // ===== FOOD & DINING =====
@@ -73,7 +73,7 @@ const CATEGORY_RULES = {
     /youtube/i, /amazon prime/i, /audible/i, /kindle/i, /newsgroup ninja/i,
     /soundcloud/i, /nts live/i, /subscribestar/i, /patreon/i, /substack/i,
     /wordpress/i, /porkbun/i, /fox digital/i, /wikipedia/i, /steam\b/i,
-    /ticketweb/i, /true panther/i, /jackhafford/i
+    /ticketweb/i, /true panther/i, /jackhafford/i, /naturalcycles/i
   ],
   'Software & Cloud': [
     /google cloud/i, /google workspace/i, /google work/i, /google one/i,
@@ -108,7 +108,7 @@ const CATEGORY_RULES = {
   // ===== TRANSFERS & PAYMENTS =====
   'Transfers': [
     /zelle/i, /venmo/i, /paypal/i, /transfer/i, /online transfer/i,
-    /ally bank/i, /betterment/i, /schwab/i
+    /ally bank/i, /betterment/i, /schwab/i, /crosscountry/i
   ],
   'Credit Card Payment': [
     /chase credit card/i, /apple credit card/i, /amex/i, /payment\b/i
