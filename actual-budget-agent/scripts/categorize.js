@@ -35,8 +35,9 @@ const CATEGORY_RULES = {
   'Auto & Transport': [
     /uber trip/i, /uber\b/i, /lyft/i, /car wash/i, /lawrence express/i,
     /genesis/i, /bluelink/i, /hyundai/i, /parking/i, /chipay/i,
-    /car care auto/i, /genesis fi/i, /spothero/i, /park chicago/i,
-    /ventra/i, /superior collision/i
+    /car care auto/i, /genesis fi/i, /gf genesis/i, /spothero/i, /park chicago/i,
+    /ventra/i, /superior collision/i,
+    /ally\s+ally\s+paymt/i, /ally\s+paymt/i  // Ally auto loan for GV60
   ],
 
   // ===== HOUSING & UTILITIES =====
@@ -114,7 +115,7 @@ const CATEGORY_RULES = {
   ],
   'Credit Card Payment': [
     /chase credit card/i, /apple credit card/i, /amex/i, /ally cc/i,
-    /ally.*paymt/i, /applecard/i, /capital one.*payment/i
+    /applecard/i, /capital one.*payment/i
   ],
 
   // ===== FEES & TAXES =====
