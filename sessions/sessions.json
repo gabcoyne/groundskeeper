@@ -335,7 +335,7 @@
       "accountId": "coyne-home"
     },
     "sessionId": "6edf9253-0c98-4fcf-a474-104828c7f700",
-    "updatedAt": 1770345779356,
+    "updatedAt": 1770347066260,
     "deliveryContext": {
       "channel": "telegram",
       "to": "telegram:6938231129",
@@ -401,14 +401,14 @@
       "version": 0
     },
     "inputTokens": 8,
-    "outputTokens": 396,
-    "totalTokens": 111605,
+    "outputTokens": 574,
+    "totalTokens": 117897,
     "modelProvider": "anthropic",
     "model": "claude-opus-4-5",
     "contextTokens": 200000,
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1770345592691,
+      "generatedAt": 1770346982040,
       "sessionId": "6edf9253-0c98-4fcf-a474-104828c7f700",
       "sessionKey": "agent:groundskeeper:main",
       "provider": "anthropic",
