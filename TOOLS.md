@@ -1,15 +1,37 @@
 # TOOLS.md - Coyne Home Credentials & References
 
+## Vaultwarden (Credential Storage)
+
+All secrets stored in Vaultwarden. Access via CLI on Ubuntu Dev 1:
+
+```bash
+# Quick retrieval
+~/scripts/get-credential.sh "Item Name" [password|username|uri|notes]
+
+# Manual CLI
+export BW_PASSWORD="AgentVault2026!"
+BW_SESSION=$(bw unlock --passwordenv BW_PASSWORD --raw)
+bw get item "Item Name" --session "$BW_SESSION" | jq -r '.login.password'
+```
+
+**Vault URL**: `https://vault.lan.coyne.sh`
+**Agent Account**: `agents@coyne.sh`
+
+---
+
 ## UniFi API Access
 
 **Controller**: `https://10.6.66.1` (UDM Pro)
-**API Key**: `rt8ZeU70yqJPtt5ybvbd_QVBg5JYkFU3`
+**API Key**: 🔐 Vaultwarden → "UniFi API Key"
 
 ### Request Format
 
 ```bash
+# Get API key from vault first
+API_KEY=$(~/scripts/get-credential.sh "UniFi API Key" password)
+
 curl -k -X GET 'https://10.6.66.1/proxy/network/integration/v1/<endpoint>' \
-  -H 'X-API-KEY: rt8ZeU70yqJPtt5ybvbd_QVBg5JYkFU3' \
+  -H "X-API-KEY: $API_KEY" \
   -H 'Accept: application/json'
 ```
 
@@ -43,9 +65,12 @@ Note: `-k` flag required (self-signed cert)
 For convenience, use this pattern in exec:
 
 ```bash
+# First get API key from vault
+API_KEY=$(~/scripts/get-credential.sh "UniFi API Key" password)
+
 unifi() {
   curl -sk -X "${2:-GET}" "https://10.6.66.1/proxy/network/integration/v1$1" \
-    -H 'X-API-KEY: rt8ZeU70yqJPtt5ybvbd_QVBg5JYkFU3' \
+    -H "X-API-KEY: $API_KEY" \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' \
     ${3:+-d "$3"}
@@ -85,7 +110,7 @@ unifi() {
 **Budget Name**: My Finances
 **File ID**: `51b5bac4-bacd-4fa6-9043-1b5c459164eb`
 **Sync ID**: `9b174808-0fe7-4d4d-9b09-7573d3caf074`
-**Password**: `RGR!vwy*hay.vgm0dpg`
+**Password**: 🔐 Vaultwarden → "Actual Budget"
 
 ### Direct SQLite Access (Preferred for Reads)
 
