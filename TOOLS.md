@@ -87,6 +87,34 @@ unifi() {
 **Sync ID**: `9b174808-0fe7-4d4d-9b09-7573d3caf074`
 **Password**: `RGR!vwy*hay.vgm0dpg`
 
+### Direct SQLite Access (Preferred for Reads)
+
+**Database Path** (after budget download):
+```
+actual-budget-agent/scripts/actual-data/My-Finances-5da68fc/db.sqlite
+```
+
+**Use SQLite for:** Large queries, reports, analytics, bulk reads
+**Use API for:** Writes, syncing changes to server
+
+```javascript
+const Database = require('better-sqlite3');
+const db = new Database('./actual-data/My-Finances-5da68fc/db.sqlite', { readonly: true });
+
+const txns = db.prepare(`
+  SELECT t.*, c.name as category, p.name as payee
+  FROM transactions t
+  LEFT JOIN categories c ON t.category = c.id
+  LEFT JOIN payees p ON t.payee = p.id
+  WHERE t.tombstone = 0
+`).all();
+
+db.close();
+```
+
+**Key Tables:** `transactions`, `categories`, `category_groups`, `zero_budgets`, `payees`, `accounts`
+**Note:** Amounts are in cents (divide by 100)
+
 ### API Usage
 
 ```bash
@@ -101,6 +129,27 @@ curl -s http://actual-budget:5006/sync/list-user-files \
 ```
 
 API docs: https://actualbudget.org/docs/api/
+
+---
+
+## Gmail API (Receipt Fetching)
+
+**Credentials Location**: `/home/node/.openclaw/workspace/gmail-calendar-agent/`
+**Tokens Path**: `auth/tokens.json`
+**Project ID**: `coyne-home`
+
+Credentials stored externally at the location above (not in repo for security).
+Refresh token already obtained.
+
+### Scopes Available
+- `gmail.modify` — Read/label emails
+- `gmail.labels` — Manage labels
+- `calendar` — Full calendar access
+- `calendar.events` — Event management
+
+### Existing Tools
+- `receipt_extractor.py` — Basic receipt extraction (needs improvement)
+- Integration with Actual Budget: TBD
 
 ---
 

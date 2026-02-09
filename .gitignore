@@ -40,3 +40,4 @@ Thumbs.db
 *.duckdb
 deductions-*.json
 deductions-*.csv
+sessions/

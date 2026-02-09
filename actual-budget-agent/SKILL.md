@@ -113,6 +113,80 @@ Configure via OpenClaw cron:
 - Major purchases outside Cook County save ~2-3% sales tax
 - SALT deduction capped at $10,000
 
+## Data Access
+
+### API vs Direct SQLite
+
+The `@actual-app/api` package is convenient but **slow for bulk operations**. Use direct SQLite for:
+- Large transaction queries (>100 rows)
+- Bulk budget amount reads
+- Reports and analytics
+- Any read-heavy operation
+
+**Use the API for:**
+- Writing data (transactions, budgets, categories)
+- Syncing changes to the server
+- Operations that need CRDT conflict resolution
+
+### SQLite Database Path
+
+After downloading the budget, the SQLite database is at:
+```
+./actual-data/My-Finances-5da68fc/db.sqlite
+```
+
+### Direct Query Example (Node.js)
+
+```javascript
+const Database = require('better-sqlite3');  // Available via @actual-app/api
+const db = new Database('./actual-data/My-Finances-5da68fc/db.sqlite', { readonly: true });
+
+// Get all February transactions
+const transactions = db.prepare(`
+  SELECT t.*, c.name as category_name, p.name as payee_name
+  FROM transactions t
+  LEFT JOIN categories c ON t.category = c.id
+  LEFT JOIN payees p ON t.payee = p.id
+  WHERE t.date BETWEEN '2026-02-01' AND '2026-02-28'
+    AND t.tombstone = 0
+  ORDER BY t.date DESC
+`).all();
+
+// Get budget amounts
+const budgets = db.prepare(`
+  SELECT zb.month, c.name, zb.amount
+  FROM zero_budgets zb
+  JOIN categories c ON zb.category = c.id
+  WHERE zb.month = '202602'
+`).all();
+
+db.close();
+```
+
+### Key Tables
+
+| Table | Purpose |
+|-------|---------|
+| `transactions` | All transactions (check `tombstone=0` for active) |
+| `categories` | Category definitions |
+| `category_groups` | Category groupings |
+| `zero_budgets` | Budget amounts by month/category |
+| `payees` | Payee names and rules |
+| `accounts` | Account definitions |
+
+### Amounts
+
+All monetary amounts are stored in **cents** (integer). Divide by 100 for dollars.
+
+### Important: Sync After API Writes
+
+When using the API to write changes:
+```javascript
+await api.setBudgetAmount('2026-02', categoryId, 50000);  // $500.00
+await api.sync();  // Required to push to server!
+await api.shutdown();
+```
+
 ## Data Storage
 
 - `data/categorizer_config.json` - Learned categories
